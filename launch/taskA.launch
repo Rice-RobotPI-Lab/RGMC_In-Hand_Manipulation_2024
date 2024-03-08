@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="tag" default="38"/>
+    <arg name="task_name" default="taskA.yaml"/>
+
+    <include file="$(find RGMC_In-Hand_Manipulation_2024)/launch/single_camera_track.launch">
+        <arg name="task" value="1"/>
+        <arg name="tag" value="$(arg tag)"/>
+        <arg name="tags_file" value="$(find RGMC_In-Hand_Manipulation_2024)/config/tags_taskA.yaml"/>
+        <arg name="task_file" value="$(find RGMC_In-Hand_Manipulation_2024)/task/$(arg task_name)"/>
+    </include>
+</launch>

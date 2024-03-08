@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<launch>
+
+	<arg name="camera_name" default="usb_cam"/>
+	<arg name="publish_tf" default="true"/>
+	<arg name="rviz" default="true"/>
+    <arg name="video_device" default="/dev/video0"/>
+    <arg name="tag" default=""/>
+    <arg name="cube_file" default=""/>
+    <arg name="task"/>
+    <arg name="tags_file"/>
+    <arg name="task_file"/>
+
+	<!-- set up cameras -->
+    <node name="$(arg camera_name)" pkg="usb_cam" type="usb_cam_node" output="screen">
+        <param name="video_device" value="$(arg video_device)"/>
+        <param name="image_width" value="1920"/>
+        <param name="image_height" value="1080"/>
+        <param name="pixel_format" value="mjpeg"/>
+        <param name="framerate" value="30"/>
+        <param name="camera_frame_id" value="$(arg camera_name)"/>
+        <param name="camera_name" value="$(arg camera_name)"/>
+        <param name="camera_info_url" value="file://$(find RGMC_In-Hand_Manipulation_2024)/config/camera_info/$(arg camera_name)_1080p.yaml"/>
+    </node>
+
+	<!-- set up apriltag detectors -->
+    <include file="$(find RGMC_In-Hand_Manipulation_2024)/launch/continuous_detection.launch">
+        <arg name="camera_name" value="$(arg camera_name)"/>
+        <arg name="camera_frame" value="$(arg camera_name)"/>
+        <arg name="publish_tf" value="$(arg publish_tf)"/>
+        <arg name="tags_file" value="$(arg tags_file)"/>
+    </include>
+
+    <!-- set up task assignment and evaluation -->
+    <node name="" pkg="RGMC_In-Hand_Manipulation_2024" type="task_eval.py" output="screen">
+        <param name="task" value="$(arg task)"/>
+        <param name="tag" value="$(arg tag)"/>
+        <param name="task_file" value="$(arg task_file)"/>
+        <param name="cube_file" value="$(arg cube_file)"/>
+    </node>
+	
+	<node name="rviz" pkg="rviz" type="rviz" if="$(arg rviz)" args="-d $(find RGMC_In-Hand_Manipulation_2024)/rviz/eval.rviz"/>
+
+</launch>

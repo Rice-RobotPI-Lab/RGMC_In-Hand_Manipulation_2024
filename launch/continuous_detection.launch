@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<launch>
+  
+  	<arg name="launch_prefix" default=""/> <!-- set to value="gdbserver localhost:10000" for remote debugging -->
+	<arg name="camera_name" default="usb_cam"/>
+	<arg name="camera_frame" default="head_camera"/>
+	<arg name="image_topic" default="image_raw"/>
+	<arg name="publish_tf" default="false"/>
+	<arg name="tags_file" default="tag_task1"/>
+
+
+	<!-- Set parameters -->
+	<rosparam command="load" file="$(find RGMC_In-Hand_Manipulation_2024)/config/settings.yaml" ns="apriltag_ros_continuous_node"/>
+	<rosparam command="load" file="$(arg tags_file)" ns="apriltag_ros_continuous_node"/>
+  
+	<node pkg="apriltag_ros" type="apriltag_ros_continuous_node" name="apriltag_ros_continuous_node" clear_params="false" launch-prefix="$(arg launch_prefix)">
+		<!-- Remap topics from those used in code to those on the ROS network -->
+		<remap from="image_rect" to="/$(arg camera_name)/$(arg image_topic)"/>
+		<remap from="camera_info" to="/$(arg camera_name)/camera_info"/>
+
+		<param name="camera_frame" type="str" value="$(arg camera_frame)"/>
+		<param name="publish_tag_detections_image" type="bool" value="true"/>      <!-- default: false -->
+		<param name="publish_tf" type="bool" value="$(arg publish_tf)"/>
+	</node>
+	
+</launch>
