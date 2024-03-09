@@ -79,7 +79,7 @@ The total number of successfully reached goal facets will be recorded.
 
 The list of goal facets is specified by a file in `RGMC_In-Hand_Manipulation_2024/task` by setting the roslaunch argument, for example:
 ```
-    roslaunch rgmc_eval taskB.launch task_name:=taskB.yaml
+    roslaunch RGMC_In-Hand_Manipulation_2024 taskB.launch task_name:=taskB.yaml
 ```
 
 
