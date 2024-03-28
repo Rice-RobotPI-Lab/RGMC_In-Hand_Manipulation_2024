@@ -191,7 +191,7 @@ class TaskEval:
             else:
                 self.handle_stop_task(_)
                 self.pub_timer.shutdown()
-                # print("Finished Task 1 Total E %f"%(self.total_score))
+                # print("Finished Task 1 Total Error %f"%(self.total_score))
                 self.state_lock.release()
                 return TriggerResponse(True, msg)
             
@@ -217,7 +217,7 @@ class TaskEval:
             if self.goal_id >= self.num_waypoints:
                 self.handle_stop_task(_)
                 self.pub_timer.shutdown()
-                print("Finished Task 2 Total Score %d/%d"%(self.total_success))
+                # print("Finished Task 2 Total Score %d/%d"%(self.total_success, self.num_waypoints))
                 self.state_lock.release()
                 return TriggerResponse(True, msg)
 
