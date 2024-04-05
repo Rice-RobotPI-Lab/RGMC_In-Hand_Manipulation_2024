@@ -5,11 +5,8 @@
 	<arg name="publish_tf" default="true"/>
 	<arg name="rviz" default="true"/>
     <arg name="video_device" default="/dev/video0"/>
-    <arg name="tag" default=""/>
-    <arg name="cube_file" default=""/>
-    <arg name="task"/>
-    <arg name="tags_file"/>
-    <arg name="task_file"/>
+    <arg name="tags_file" defualt="tags_taskB.yaml"/>
+
 
 	<!-- set up cameras -->
     <node name="$(arg camera_name)" pkg="usb_cam" type="usb_cam_node" output="screen">
@@ -28,17 +25,9 @@
         <arg name="camera_name" value="$(arg camera_name)"/>
         <arg name="camera_frame" value="$(arg camera_name)"/>
         <arg name="publish_tf" value="$(arg publish_tf)"/>
-        <arg name="tags_file" value="$(arg tags_file)"/>
+        <arg name="tags_file" value="$(find RGMC_In-Hand_Manipulation_2024)/config/$(arg tags_file)"/>
     </include>
 
-    <!-- set up task assignment and evaluation -->
-    <node name="" pkg="RGMC_In-Hand_Manipulation_2024" type="task_eval.py" output="screen">
-        <param name="task" value="$(arg task)"/>
-        <param name="tag" value="$(arg tag)"/>
-        <param name="task_file" value="$(arg task_file)"/>
-        <param name="cube_file" value="$(arg cube_file)"/>
-    </node>
-	
 	<node name="rviz" pkg="rviz" type="rviz" if="$(arg rviz)" args="-d $(find RGMC_In-Hand_Manipulation_2024)/rviz/eval.rviz"/>
 
 </launch>

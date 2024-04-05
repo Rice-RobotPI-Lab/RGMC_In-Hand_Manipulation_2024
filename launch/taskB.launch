@@ -2,10 +2,12 @@
 <launch>
     <arg name="task_name" default="taskB.yaml"/>
 
-    <include file="$(find RGMC_In-Hand_Manipulation_2024)/launch/single_camera_track.launch">
-        <arg name="task" value="2"/>
-        <arg name="tags_file" value="$(find RGMC_In-Hand_Manipulation_2024)/config/tags_taskB.yaml"/>
-        <arg name="cube_file" value="$(find RGMC_In-Hand_Manipulation_2024)/config/tags_cube.yaml"/>
-        <arg name="task_file" value="$(find RGMC_In-Hand_Manipulation_2024)/task/$(arg task_name)"/>
-    </include>
+    <!-- set up task assignment and evaluation -->
+    <node name="" pkg="RGMC_In-Hand_Manipulation_2024" type="task_eval.py" output="screen">
+        <param name="task" value="2"/>
+        <param name="tag" value=""/>
+        <param name="task_file" value="$(find RGMC_In-Hand_Manipulation_2024)/task/$(arg task_name)"/>
+        <param name="cube_file" value="$(find RGMC_In-Hand_Manipulation_2024)/config/tags_cube.yaml"/>
+    </node>
+
 </launch>

@@ -17,4 +17,6 @@ standalone_tags:
 
     {id: 40, size: 0.02},
     {id: 41, size: 0.02},
+    
+    {id: 38, size: 0.02},
   ]
