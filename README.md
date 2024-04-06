@@ -77,14 +77,7 @@ To start the task B run
 ```
     roslaunch RGMC_In-Hand_Manipulation_2024 taskB.launch
 ```
-Once the operator has initialized and stabilized the grasp, call the ROS service `/rgcm_eval/start` to start the task. 
-The current goal facet is broadcasted to the topic `/rgcm_eval/taskB/goal` at 0.1-second intervals. 
-Once you are done with a goal facet, the performance with respect to the current goal facet is evaluated by calling the ROS service `/rgcm_eval/record`, which will also trigger the auto-evaluator to publish the next goal facet.
-Otherwise, if the time limit of 30 seconds is reached, the auto-evaluator will automatically record the result and move to the next target facet.
-If the orientation of the cube's goal facet is within 0.5 rad facing the camera, it will count as a success. 
-The total number of successfully reached goal facets will be recorded. 
-
-The list of goal facets is specified by a file in `RGMC_In-Hand_Manipulation_2024/task` by setting the roslaunch argument, for example:
+Once the operator has initialized and stabilized the grasp, call the ROS service `/rgcm_eval/start` to start the task. The current goal facet is broadcasted to the topic `/rgcm_eval/taskB/goal` at 0.1-second intervals. Once you are done with a goal facet, the performance with respect to the current goal facet is evaluated by calling the ROS service `/rgcm_eval/record`, which will also trigger the auto-evaluator to publish the next goal facet. Otherwise, if the time limit of 30 seconds is reached, the auto-evaluator will automatically record the result and move to the next target facet. If the orientation of the cube's goal facet is within 0.5 rad facing the camera, it will count as a success. The total number of successfully reached goal facets will be recorded. The list of goal facets is specified by a file in `RGMC_In-Hand_Manipulation_2024/task` by setting the roslaunch argument, for example:
 ```
     roslaunch RGMC_In-Hand_Manipulation_2024 taskB.launch task_name:=taskB.yaml
 ```
@@ -96,6 +89,8 @@ The list of goal facets is specified by a file in `RGMC_In-Hand_Manipulation_202
 `real-eval` is a branch under this repository that will be used by the judges and teams during the competition. At the competition, the judges will bring their own computers to run the evaluator, and the teams will run all their code on their own computers that are on the **same ROS network** with the judges computers.
 
 **Network configuration:** Every team will provide 1 computer dedicated as the ROS Master where the roscore is running. Other programs can also run on this ROS Master computer as needed. The judge computers will **NOT** provide a roscore. We will use the IP range `192.168.100.0/24`. The ROS Master's IP address has to be manually configured to `192.168.0.100`. The judges computer will use the IP address `192.168.0.101`. Each team can use mulitple other computers as needed with other unreserved IPs. 
+
+We will bring network switches to the competition to facilitate the network setup. <b>The teams need to make sure your computers have Ethernet ports and please bring Ehthernet cables for your own computers to be connected with our switches</b>.
 
 **Judges:** The judges will launch the task evaluator by running the commands described above. For example:  
 ```
