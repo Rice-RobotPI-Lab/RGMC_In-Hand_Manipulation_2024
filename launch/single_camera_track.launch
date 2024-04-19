@@ -25,7 +25,7 @@
         <arg name="camera_name" value="$(arg camera_name)"/>
         <arg name="camera_frame" value="$(arg camera_name)"/>
         <arg name="publish_tf" value="$(arg publish_tf)"/>
-        <arg name="tags_file" value="$(find RGMC_In-Hand_Manipulation_2024)/config/tags_taskB.yaml"/>
+        <arg name="tags_file" value="$(find RGMC_In-Hand_Manipulation_2024)/config/$(arg tags_file)"/>
     </include>
 
 	<node name="rviz" pkg="rviz" type="rviz" if="$(arg rviz)" args="-d $(find RGMC_In-Hand_Manipulation_2024)/rviz/eval.rviz"/>
