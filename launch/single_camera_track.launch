@@ -5,7 +5,7 @@
 	<arg name="publish_tf" default="true"/>
 	<arg name="rviz" default="true"/>
     <arg name="video_device" default="/dev/video0"/>
-    <arg name="tags_file" defualt="tags_taskB.yaml"/>
+    <arg name="tags_file" default="tags_taskB.yaml"/>
 
 
 	<!-- set up cameras -->
@@ -25,7 +25,7 @@
         <arg name="camera_name" value="$(arg camera_name)"/>
         <arg name="camera_frame" value="$(arg camera_name)"/>
         <arg name="publish_tf" value="$(arg publish_tf)"/>
-        <arg name="tags_file" value="$(find RGMC_In-Hand_Manipulation_2024)/config/$(arg tags_file)"/>
+        <arg name="tags_file" value="$(find RGMC_In-Hand_Manipulation_2024)/config/tags_taskB.yaml"/>
     </include>
 
 	<node name="rviz" pkg="rviz" type="rviz" if="$(arg rviz)" args="-d $(find RGMC_In-Hand_Manipulation_2024)/rviz/eval.rviz"/>
