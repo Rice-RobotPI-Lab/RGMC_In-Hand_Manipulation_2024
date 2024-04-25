@@ -43,7 +43,7 @@ For the apriltag_ros package to work correctly with this auto-evaluator package,
 ### Objects and Apriltags
 <img src="models/objects.png" alt="drawing" width="500"/>
 
-There are 5 3D printed objects with their models in `RGMC_In-Hand_Manipulation_2024/models`, plus one unknown object for task A, as shown in the figure above. The cylinders are 60mm, 80mm, 100mm in diameter and 100mm tall.  The cubes are of sizes 50\*50\*50 mm<sup>3</sup> and 90\*90\*90 mm<sup>3</sup>. On the cylinder objects, there is a 30\*30\*1 mm3 reserved space to attach the apriltags. On the small and large cube objects, there are one or four such reserved spaces on each facet. We use tag family <b>tag36h11</b> from apriltag_ros to track the pose of the manipulated objects. 
+There are 5 3D printed objects with their models in `RGMC_In-Hand_Manipulation_2024/models`, plus one unknown object for task A, as shown in the figure above. The cylinders are 60mm, 80mm, 100mm in diameter and 80mm tall.  The cubes are of sizes 50\*50\*50 mm<sup>3</sup> and 90\*90\*90 mm<sup>3</sup>. On the cylinder objects, there is a 30\*30\*1 mm3 reserved space to attach the apriltags. On the small and large cube objects, there are one or four such reserved spaces on each facet. We use tag family <b>tag36h11</b> from apriltag_ros to track the pose of the manipulated objects. 
 
 
 For Task A, the tag used to track the cylinders is specified in `RGMC_In-Hand_Manipulation_2024/config/tags_taskA.yaml`.
